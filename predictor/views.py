@@ -7,7 +7,8 @@ import pickle
 import numpy as np
 
 # Load the Random Forest CLassifier model
-filename = '/Users/ishakumar/Desktop/aimlProject/aiml/predictor/first-innings-score-lr-model.pkl'
+filename = 'C:/Users/Gokul/Desktop/match-predictor/predictor/first-innings-score-lr-model.pkl'
+
 regressor = pickle.load(open(filename, 'rb'))
 
 def home(request):
@@ -18,7 +19,7 @@ def predict(request):
     
     if request.method == 'POST':
         
-        batting_team = request.form['batting-team']
+        batting_team = request.POST['batting-team']
         if batting_team == 'Chennai Super Kings':
             temp_array = temp_array + [1,0,0,0,0,0,0,0]
         elif batting_team == 'Delhi Daredevils':
@@ -37,7 +38,7 @@ def predict(request):
             temp_array = temp_array + [0,0,0,0,0,0,0,1]
             
             
-        bowling_team = request.form['bowling-team']
+        bowling_team = request.POST['bowling-team']
         if bowling_team == 'Chennai Super Kings':
             temp_array = temp_array + [1,0,0,0,0,0,0,0]
         elif bowling_team == 'Delhi Daredevils':
@@ -56,11 +57,11 @@ def predict(request):
             temp_array = temp_array + [0,0,0,0,0,0,0,1]
             
             
-        overs = float(request.form['overs'])
-        runs = int(request.form['runs'])
-        wickets = int(request.form['wickets'])
-        runs_in_prev_5 = int(request.form['runs_in_prev_5'])
-        wickets_in_prev_5 = int(request.form['wickets_in_prev_5'])
+        overs = float(request.POST['overs'])
+        runs = int(request.POST['runs'])
+        wickets = int(request.POST['wickets'])
+        runs_in_prev_5 = int(request.POST['runs_in_prev_5'])
+        wickets_in_prev_5 = int(request.POST['wickets_in_prev_5'])
         
         temp_array = temp_array + [overs, runs, wickets, runs_in_prev_5, wickets_in_prev_5]
         

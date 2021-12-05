@@ -19,5 +19,5 @@ from . import views
 
 urlpatterns = [
     path('', views.home),
-    path('/result', views.predict),
+    path('predict', views.predict),
 ]
