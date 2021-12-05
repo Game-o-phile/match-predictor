@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Loading the dataset
-df = pd.read_csv('ipl.csv')
+df = pd.read_csv('predictor\ipl.csv')
 
 # --- Data Cleaning ---
 # Removing unwanted columns
@@ -49,8 +49,8 @@ X_test.drop(labels='date', axis=True, inplace=True)
 
 # --- Model Building ---
 # Linear Regression Model
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
+from sklearn.linear_model import LogisticRegression
+regressor = LogisticRegression(random_state=0,max_iter=100000).fit(X_train, y_train)
 regressor.fit(X_train,y_train)
 
 # Creating a pickle file for the classifier
